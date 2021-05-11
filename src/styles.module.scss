@@ -1,0 +1,78 @@
+.combinationButtonContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.combinationButton {
+  height: 28px;
+  margin-left: 2px;
+  color: #ffc077;
+  line-height: 1;
+  background: linear-gradient(#543924, #7c5436);
+  border: 2px solid #744f33;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.highlightBlock {
+  position: absolute;
+  top: 0;
+  box-sizing: border-box;
+  padding-top: 2px;
+  background-color: rgba(255, 255, 0, .2);
+  border: 2px solid;
+  border-radius: 2px;
+  pointer-events: none;
+
+  &.highlightItemActive {
+  }
+
+  &.highlightItemInactive {
+    background: none;
+    border-color: transparent !important;
+    opacity: .3;
+  }
+
+  .qualityLabel {
+    padding: 1px;
+    color: black;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  .qualityLabel:hover,
+  &.highlightItemActive .qualityLabel {
+    border: 2px solid white;
+  }
+}
+
+.combinationDetailPanel {
+  position: absolute;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(5, 1fr);
+  gap: 2px 8px;
+  padding: 4px;
+  text-align: start;
+  background-color: rgba(0, 0, 0, .8);
+  border-radius: 4px;
+}
+
+.infoLineElement {
+  margin: 0;
+  border-radius: 2px;
+  cursor: pointer;
+
+  &:hover,
+  &.infoLineElementActive {
+    background-color: rgba(white, .2);
+  }
+
+  &.infoLineElementInactive {
+    opacity: .4;
+  }
+}
