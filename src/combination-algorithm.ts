@@ -1,9 +1,10 @@
 import { StashItem } from './interfaces/stash-item';
 import { TradingCombination } from './interfaces/trading-combination';
-import { getQualitySumOfItems, compareItemPosition, compareItemQuality } from './stash-item-utils';
+import { getQualitySumOfItems, compareItemPosition, compareItemQuality, getQualityOfItem } from './stash-item-utils';
 
 const requiredQualitySum = 40;
 const maximumQualitySum = 45;
+const maxQuality = 20;
 
 export function findBestTradingCombinations(items: StashItem[]): TradingCombination[] {
   const combinationsWithoutSort = findTradingCombinations(items);
@@ -12,7 +13,7 @@ export function findBestTradingCombinations(items: StashItem[]): TradingCombinat
   return getLargestArray(combinationsWithoutSort, combinationsWithPositionSort, combinationsWithQualitySort);
 }
 
-function findTradingCombinations(items: StashItem[]): TradingCombination[] {
+export function findTradingCombinations(items: StashItem[]): TradingCombination[] {
   let combinations = findCombinationsUnderQualitySum(items, 40);
   if (!combinations.length) {
     for (let maxQualitySum = 41; maxQualitySum < maximumQualitySum; maxQualitySum += 1) {
@@ -37,11 +38,15 @@ function findCombinationsUnderQualitySum(items: StashItem[], maxQualitySum: numb
   }, [] as StashItem[][]);
 }
 
-function findTradingCombination(items: StashItem[], itemCombination: StashItem[], maxQualitySum: number): StashItem[] {
+function findTradingCombination(items: StashItem[], itemCombination: StashItem[], maxQualitySum: number): StashItem[] | null {
   for (const currentItem of items.filter((item) => !itemCombination.includes(item))) {
     const tryingCombination = [...itemCombination, currentItem];
     const qualitySum = getQualitySumOfItems(tryingCombination);
+    const currentItemQuality = getQualityOfItem(currentItem);
 
+    if (currentItemQuality === maxQuality) {
+      return null;
+    }
     if (requiredQualitySum <= qualitySum && qualitySum <= maxQualitySum) {
       return tryingCombination;
     }

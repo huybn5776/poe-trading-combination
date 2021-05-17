@@ -1,11 +1,11 @@
 import { StashItem } from './interfaces/stash-item';
 
 export function isFlaskItem(item: StashItem): boolean {
-  return item.baseType.includes('藥劑');
+  return !!item.baseType?.includes('藥劑');
 }
 
 export function isGemItem(item: StashItem): boolean {
-  return item.icon.includes('/Gems/');
+  return !!item.icon?.includes('/Gems/');
 }
 
 export function getItemType(item: StashItem): string {
@@ -21,7 +21,7 @@ export function getItemType(item: StashItem): string {
 export function getQualityOfItem(item: StashItem): number {
   const qualityProperty = item.properties.find((property) => property.type === 6);
   const qualityLabel = qualityProperty?.values[0][0];
-  return parseInt(qualityLabel, 10);
+  return parseInt(qualityLabel || '0', 10);
 }
 
 export function compareItemPosition(item1: StashItem, item2: StashItem): number {
@@ -34,6 +34,6 @@ export function compareItemQuality(item1: StashItem, item2: StashItem): number {
   return getOrder(item2) - getOrder(item1);
 }
 
-export function getQualitySumOfItems(items:StashItem[]): number {
+export function getQualitySumOfItems(items: StashItem[]): number {
   return items.reduce((acc, item) => acc + getQualityOfItem(item), 0);
 }

@@ -112,7 +112,7 @@ function clearElementChild(element: HTMLElement): void {
 function renderHighlightBlocks(
   highlightContainer: HTMLElement,
   combinations: TradingCombination[],
-  selectedCombination: TradingCombination,
+  selectedCombination?: TradingCombination,
 ): void {
   for (let i = 0; i < combinations.length && i < maxHighlights; i += 1) {
     const combination = combinations[i];
@@ -170,7 +170,7 @@ function createOnCombinationClickListener(
 function renderCombinationDetails(
   highlightContainer: HTMLElement,
   combinations: TradingCombination[],
-  selectedCombination: TradingCombination,
+  selectedCombination?: TradingCombination,
 ): void {
   const highlightCount = Math.min(maxHighlights, combinations.length);
   let detailLines = combinations.slice(0, highlightCount).map(combinationToText);
@@ -196,7 +196,7 @@ function renderCombinationDetails(
   }
 }
 
-function combinationToText(combination): string {
+function combinationToText(combination: TradingCombination): string {
   const itemType = getItemType(combination.items[0]);
   const prefix = { flask: '💧', gem: '💎' }[itemType] || 'Σ';
   const qualitySumIfWorse = combination.sum === requiredQualitySum ? '' : `(${combination.sum}%)`;
@@ -204,7 +204,7 @@ function combinationToText(combination): string {
   return `${prefix}${qualitySumIfWorse} ${qualityText}`;
 }
 
-function createCombinationDetailPanel(textLines): HTMLElement {
+function createCombinationDetailPanel(textLines: string[]): HTMLElement {
   const combinationDetailPanel = document.createElement('div');
   combinationDetailPanel.className = styles.combinationDetailPanel;
   combinationDetailPanel.style.gridTemplateRows = `repeat(${Math.min(textLines.length, 5)}, 1fr)`;

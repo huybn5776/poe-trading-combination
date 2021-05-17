@@ -2,6 +2,7 @@
 
 import { findBestTradingCombinations } from './combination-algorithm';
 import { ItemType } from './enums/item-type';
+import { StashItem } from './interfaces/stash-item';
 import { TradingCombination } from './interfaces/trading-combination';
 import {
   clearHighlights,
@@ -41,12 +42,12 @@ async function tradingCombination(type?: ItemType): Promise<void> {
   registerClearHighlightCallback();
 }
 
-function getFlaskCombinations(stashItems): TradingCombination[] {
+function getFlaskCombinations(stashItems: StashItem[]): TradingCombination[] {
   const flasks = stashItems.filter(isFlaskItem).filter((item) => !!getQualityOfItem(item));
   return findBestTradingCombinations(flasks);
 }
 
-function getGemCombinations(stashItems): TradingCombination[] {
+function getGemCombinations(stashItems: StashItem[]): TradingCombination[] {
   const gems = stashItems.filter(isGemItem).filter((item) => !!getQualityOfItem(item));
   return findBestTradingCombinations(gems);
 }
