@@ -1,0 +1,81 @@
+.stashPanel {
+  position: relative;
+  width: 600px;
+  height: 781px;
+  background-color: #0d1616;
+}
+
+.tabs {
+  position: absolute;
+  top: 118px;
+  left: 15px;
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  height: 26px;
+  padding: 0 12px;
+  color: #ffc077;
+}
+
+.tab {
+  position: relative;
+  min-width: 50px;
+  text-align: center;
+  background-color: #607420;
+  border-radius: 4px 4px 0 0;
+}
+
+.tab > input[type='radio'] {
+  display: none;
+}
+
+.tab-label {
+  display: block;
+  width: 100%;
+}
+
+.tab > input:checked ~ label::before,
+.tab > input:checked ~ label::after {
+  position: absolute;
+  bottom: 0;
+  width: 8px;
+  height: 8px;
+  text-align: center;
+  background-color: #607420;
+  content: '';
+}
+
+.tab > input:checked ~ label::before {
+  left: -8px;
+
+  // noinspection CssInvalidPropertyValue
+  clip-path: path('M8 0 Q8 8, 0 8 L8 8 L8 0');
+}
+
+.tab > input:checked ~ label::after {
+  right: -8px;
+
+  // noinspection CssInvalidPropertyValue
+  clip-path: path('M0 0 Q0 8, 8 8 L0 8 L0 0');
+}
+
+.tab > :not(input:checked) ~ label::after {
+  position: absolute;
+  bottom: 0;
+  display: block;
+  width: 52px;
+  height: 6px;
+  background: linear-gradient(180deg, rgba(13, 22, 22, 0) 0%, rgba(13, 22, 22, 1) 100%);
+  content: '';
+}
+
+.stashTabContainer {
+  position: absolute;
+  top: 143px;
+  left: 15px;
+  width: 569px;
+  height: 569px;
+  text-align: center;
+  border: 4px solid #638000;
+  border-radius: 5px;
+}

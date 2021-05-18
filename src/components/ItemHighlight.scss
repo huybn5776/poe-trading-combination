@@ -1,0 +1,29 @@
+.highlight-block {
+  position: absolute;
+  box-sizing: border-box;
+  padding-top: 2px;
+  background-color: rgba(255, 255, 0, .2);
+  border: 2px solid;
+  border-radius: 2px;
+  pointer-events: none;
+
+  &.inactive {
+    background: none;
+    border-color: transparent !important;
+    opacity: .3;
+  }
+
+  .quality-label {
+    padding: 1px;
+    color: black;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  .quality-label:hover,
+  &.active .quality-label {
+    border: 2px solid white;
+  }
+}

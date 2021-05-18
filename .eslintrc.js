@@ -18,9 +18,19 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: 'module',
     project: './tsconfig.json',
+    extraFileExtensions: ['.svelte'],
   },
-  plugins: ['react', '@typescript-eslint'],
-  ignorePatterns: ['.eslintrc.js', 'config-overrides.js'],
+  plugins: ['@typescript-eslint', 'svelte3'],
+  overrides: [
+    {
+      files: ['*.svelte'],
+      processor: 'svelte3/svelte3',
+    },
+  ],
+  settings: {
+    'svelte3/typescript': true,
+  },
+  ignorePatterns: ['.eslintrc.js', 'rollup.config.js'],
   rules: {
     'import/order': [
       2,
@@ -80,5 +90,9 @@ module.exports = {
     'react/no-unused-prop-types': 1,
     'react/no-unused-state': 1,
     'react/require-default-props': 0,
+
+    // svelte only
+    'import/no-mutable-exports': 0,
+    'import/first': 0,
   },
 };

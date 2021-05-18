@@ -1,0 +1,41 @@
+.detail-panel-container {
+  position: relative;
+  top: -28px;
+}
+
+.detail-panel {
+  position: absolute;
+  bottom: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(auto-fit, 22px);
+  gap: 0 12px;
+  max-height: 120px;
+  padding: 4px;
+  color: #a38d6d;
+  text-align: start;
+  background-color: rgba(0, 0, 0, .8);
+  border-radius: 4px;
+}
+
+.detail-line {
+  margin: 0;
+  border-radius: 2px;
+  cursor: pointer;
+
+  &:hover,
+  &.active {
+    background-color: rgba(white, .2);
+  }
+
+  &.inactive {
+    opacity: .4;
+  }
+}
+
+.message {
+  position: absolute;
+  bottom: 0;
+  color: white;
+  background-color: rgba(0, 0, 0, .8);
+}
